@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>彩礼纠纷图鉴：从对簿公堂到婚俗新风</title>
+
+    <!-- 字体引入 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+
+    <!-- 滚动动画库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="description" content="彩礼纠纷大数据分析：从对簿公堂到婚俗新风，深入解析全国彩礼纠纷案件分布、成因及破局之路">
+    <meta name="keywords" content="彩礼纠纷,大数据,婚俗改革,婚姻法律,彩礼返还">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">彩礼纠纷图鉴</a>
+            <div class="nav-menu">
+                <a href="#introduction">导语</a>
+                <a href="#data-iceberg">数据冰山</a>
+                <a href="#court-scenes">法庭情景</a>
+                <a href="#causes">纠纷成因</a>
+                <a href="#solutions">破局之路</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 红绸视觉线索 -->
+    <div class="red-ribbon" id="redRibbon">
+        <div class="ribbon-segment" id="ribbonSegment1"></div>
+        <div class="ribbon-segment" id="ribbonSegment2"></div>
+        <div class="ribbon-segment" id="ribbonSegment3"></div>
+        <div class="ribbon-segment" id="ribbonSegment4"></div>
+        <div class="ribbon-segment" id="ribbonSegment5"></div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+
+        <!-- 封面区域 -->
+        <section class="cover-section" id="cover">
+            <div class="cover-container">
+                <h1 class="cover-title">彩礼纠纷图鉴</h1>
+                <h2 class="cover-subtitle">从对簿公堂到婚俗新风</h2>
+                <div class="cover-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="cover-description">传统礼俗与现代法律的碰撞，彩礼纠纷大数据全景透视</p>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 导语部分 -->
+        <section class="section" id="introduction">
+            <div class="section-container">
+                <h2 class="section-title">彩礼下的纠纷"冰山"</h2>
+                <div class="content-wrapper">
+                    <p class="lead-text">
+                        近日，一则"婚后8个月女方私自流产，男方起诉离婚并要求退还18万彩礼"的新闻引发广泛讨论。
+                    </p>
+                    <p>
+                        随着婚姻观念变迁与民众权利意识增强，彩礼纠纷正越来越多地从家庭私域走向公共司法视野，成为基层民事审判中的高频案件类型。
+                    </p>
+                    <div class="highlight-box">
+                        <p><strong>数据显示：</strong>全国近年涉彩礼纠纷诉讼数量持续处于高位。彩礼已不再仅是礼俗象征，更在婚姻关系破裂时，成为财产清算与责任划分的核心争议点。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 案件数量变化折线图 -->
+        <section class="section data-section" id="caseTrend">
+            <div class="section-container">
+                <h2 class="section-title">全国彩礼纠纷案件数量变化 (2020-2025)</h2>
+                <p class="section-description">根据中国裁判文书网公开数据显示，2020年至2025年全国彩礼纠纷案件总量已突破4.5万件，尽管自2022年起案件数量呈逐年下降趋势，但年均近6000件的司法裁判规模，依然清晰标志着彩礼纠纷已从家庭内部矛盾演变为具有普遍性的社会法律议题。</p>
+
+                <div class="chart-container">
+                    <div id="caseTrendChart" class="echart-chart"></div>
+                </div>
+
+                <div class="data-note">
+                    <p><i class="fas fa-info-circle"></i> 数据来源：中国裁判文书网公开数据</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 纠纷经历分布 -->
+        <section class="section data-section" id="experienceChart">
+            <div class="section-container">
+                <h2 class="section-title">公众对彩礼纠纷的直接感知</h2>
+                <p class="section-description">与高发的司法案件形成鲜明对比的，是公众对彩礼纠纷相对有限的直接感知。问卷调查显示，仅5.28%的受访者表示亲身经历过彩礼纠纷，而"从没了解过"的比例高达48.96%。</p>
+
+                <div class="chart-container">
+                    <div id="experiencePieChart" class="echart-chart"></div>
+                </div>
+
+                <div class="insight-box">
+                    <h3><i class="fas fa-lightbulb"></i> 洞察</h3>
+                    <p>这种"低感知、高裁判"的现象背后，反映着大量彩礼争议在进入司法程序前，已通过家庭协商、民间调解等非正式途径消化，而进入诉讼的案例往往具有金额较大、矛盾较深、协商无果等特点。司法案件因此成为观察彩礼矛盾尖锐程度的"冰山一角"。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 地区分布地图 -->
+        <section class="section data-section" id="regionalMap">
+            <div class="section-container">
+                <h2 class="section-title">各地区彩礼纠纷案件分布 (2020~2025年)</h2>
+                <p class="section-description">从空间维度分析，彩礼纠纷案件分布呈现显著的地域集聚特征。河南省六年累计案件量超过7000件，形成明显的高发区域带，而西藏、新疆、海南等地区则相对较少。</p>
+
+                <div class="chart-container">
+                    <div id="chinaMapChart" class="echart-chart"></div>
+                </div>
+
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color low"></span>
+                        <span class="legend-label">案件较少</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color medium"></span>
+                        <span class="legend-label">案件中等</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color high"></span>
+                        <span class="legend-label">案件较多</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color highest"></span>
+                        <span class="legend-label">案件高发</span>
+                    </div>
+                </div>
+
+                <div class="data-table-container">
+                    <h3 class="table-title">各省份案件数量排名 (前10位)</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>地区</th>
+                                <th>六年累计总和</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topRegionsTable">
+                            <!-- 数据将通过JavaScript填充 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 法庭情景分类 -->
+        <section class="section" id="court-scenes">
+            <div class="section-container">
+                <h2 class="section-title">当彩礼走上法庭</h2>
+                <p class="section-description">当彩礼纠纷走入法庭，哪些情景最为常见？通过对2025年600件彩礼纠纷案件进行分类统计，我们发现，争议主要围绕六大场景展开。</p>
+
+                <div class="chart-container">
+                    <div id="sceneBarChart" class="echart-chart"></div>
+                </div>
+
+                <div class="scene-cards">
+                    <div class="scene-card">
+                        <div class="scene-card-header">
+                            <h3><i class="fas fa-ring"></i> 彩礼范围争议</h3>
+                            <span class="scene-count">227件</span>
+                        </div>
+                        <p>争议焦点往往集中在哪些财物应被认定为彩礼，尤其是"三金"或大额转账等贵重物品是否纳入彩礼范畴。</p>
+                    </div>
+
+                    <div class="scene-card">
+                        <div class="scene-card-header">
+                            <h3><i class="fas fa-heart-broken"></i> 未登记/短婚闪离</h3>
+                            <span class="scene-count">134件</span>
+                        </div>
+                        <p>通常因双方未办理结婚登记，或婚后共同生活时间极短，就是否返还彩礼及返还比例产生争议。</p>
+                    </div>
+
+                    <div class="scene-card">
+                        <div class="scene-card-header">
+                            <h3><i class="fas fa-exclamation-triangle"></i> 过错争议</h3>
+                            <span class="scene-count">48件</span>
+                        </div>
+                        <p>核心围绕一方在婚姻关系中出现如家庭暴力、隐瞒重大疾病、赌博恶习、婚外情等过错行为，是否影响彩礼返还。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 彩礼范围认知 -->
+        <section class="section data-section" id="perceptionCharts">
+            <div class="section-container">
+                <h2 class="section-title">纠纷何以生成：法律模糊与认知差异</h2>
+                <p class="section-description">公众对"哪些财物属于彩礼"的认知存在显著分歧。80%的受访者明确将"男方直接给女方家庭的现金"列为彩礼核心形式，70%认可"三金/五金"的彩礼属性。</p>
+
+                <div class="chart-container">
+                    <div id="perceptionRadarChart" class="echart-chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <div id="genderPerceptionChart" class="echart-chart"></div>
+                </div>
+
+                <div class="quote-box">
+                    <p class="quote-text">"最高人民法院2024年2月1日起施行的《关于审理涉彩礼纠纷案件适用法律若干问题的规定》，以反向排除方式明确'节日小额礼物、日常消费支出等不属于彩礼'。"</p>
+                    <p class="quote-source">—— 最高人民法院司法解释</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 彩礼返还情况 -->
+        <section class="section data-section" id="refundTable">
+            <div class="section-container">
+                <h2 class="section-title">彩礼纠纷与返还情况</h2>
+                <p class="section-description">彩礼返还比例的争议一直是纠纷核心，问卷数据显示，在涉及"隐瞒重大疾病""家暴""出轨"等过错情形时，公众选择呈现明显两极分化。</p>
+
+                <div class="table-responsive">
+                    <table class="data-table complex-table">
+                        <thead>
+                            <tr>
+                                <th>彩礼纠纷缘由</th>
+                                <th>不返还</th>
+                                <th>全额返还</th>
+                                <th>平均返还比例</th>
+                            </tr>
+                        </thead>
+                        <tbody id="refundDataTable">
+                            <!-- 数据将通过JavaScript填充 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="insight-box">
+                    <h3><i class="fas fa-gavel"></i> 司法实践</h3>
+                    <p>最高法《规定》明确"综合考虑共同生活时长、彩礼数额、双方过错等因素确定返还比例"。司法实践中，类似"上海男子与长沙女子仅见面三次结婚，男方支付30余万元彩礼后，女方未共同生活且隐瞒育有子女事实"的案例，虽最终判决返还，但执行过程中的拖延问题仍凸显了返还比例界定的复杂性。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 社会推力部分 -->
+        <section class="section" id="causes">
+            <div class="section-container">
+                <h2 class="section-title">社会推力：观念冲突与结构压力</h2>
+
+                <div class="causes-grid">
+                    <div class="cause-item">
+                        <div class="cause-icon">
+                            <i class="fas fa-venus-mars"></i>
+                        </div>
+                        <h3>婚姻挤压加剧竞争</h3>
+                        <p>据国家统计局2024年人口抽样调查显示，20-40岁适婚男女性别比显著高于平均性别比，其中20-30岁适婚男女性别比甚至超出110。这种"男多女少"的格局使彩礼成为男性竞争婚姻资源的重要筹码。</p>
+                    </div>
+
+                    <div class="cause-item">
+                        <div class="cause-icon">
+                            <i class="fas fa-family"></i>
+                        </div>
+                        <h3>代际责任绑定彩礼</h3>
+                        <p>农村地区"父代需为子代承担婚姻成本"的观念仍较普遍，问卷中56.5%的受访者认为彩礼金额应由"双方父母和子女共同商议"，这种责任绑定使彩礼超出家庭承受能力。</p>
+                    </div>
+
+                    <div class="cause-item">
+                        <div class="cause-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>攀比与炒作推高数额</h3>
+                        <p>部分短视频、自媒体对"天价彩礼"的炒作，进一步加剧了局部地区的攀比心理，使彩礼从"情感表达"异化为"面子竞赛"。</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div id="genderRatioChart" class="echart-chart"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 破局之路 -->
+        <section class="section" id="solutions">
+            <div class="section-container">
+                <h2 class="section-title">破局之路：治理实践见证婚俗新风尚</h2>
+                <p class="section-description">最高法2024年《关于审理涉彩礼纠纷案件适用法律若干问题的规定》的施行成为治理"彩礼乱象"的重要抓手，明确了"彩礼范围界定""返还比例综合判定"等规则。</p>
+
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <i class="fas fa-balance-scale-left"></i>
+                            <h3>司法引领</h3>
+                        </div>
+                        <p>湖南宁乡市人民法院通过直播"彩礼返还"集中执行行动，吸引274万网友在线围观，法官同步解读法律规定，既维护了当事人权益，也为群众划出"彩礼红线"。</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <i class="fas fa-handshake"></i>
+                            <h3>基层创新</h3>
+                        </div>
+                        <p>湖南永州市新田县发出《婚嫁"不送彩礼送社保"》倡议书，建议男青年以每年为岳父母缴纳养老保险金替代彩礼，既缓解男方经济压力，又保障女方父母养老。</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <i class="fas fa-heart"></i>
+                            <h3>婚旅融合</h3>
+                        </div>
+                        <p>湖南凤凰县作为全国婚俗改革试点，推出"天下凤凰・凤求凰"婚旅线路，组织集体婚礼，既省去高昂彩礼和酒席开支，又带动民宿、餐饮和非遗产品销售。</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div id="amountComparisonChart" class="echart-chart"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 词云图部分 -->
+        <section class="section data-section" id="wordCloud">
+            <div class="section-container">
+                <h2 class="section-title">公众期待与核心诉求</h2>
+                <p class="section-description">问卷中，公众对减少彩礼纠纷的措施支持率呈现明显梯度。65%的受访者首选"法律明确哪些算彩礼、该退多少"，居各项措施之首。</p>
+
+                <div class="chart-container">
+                    <div id="wordCloudChart" class="echart-chart"></div>
+                </div>
+
+                <div class="quote-box">
+                    <p class="quote-text">"男人最贵的聘礼，是一颗温暖体贴的心；女人最好的嫁妆，是一颗温暖体贴的心。"</p>
+                    <p class="quote-source">—— 网络流行语</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 结语部分 -->
+        <section class="section" id="conclusion">
+            <div class="section-container">
+                <div class="conclusion-content">
+                    <h2 class="section-title">彩礼"回归"：始于爱情，归于幸福</h2>
+                    <p class="lead-text">彩礼纠纷的本质，是传统婚嫁习俗与现代法治精神、个体理性与社会压力的多重碰撞。</p>
+
+                    <div class="pathway-box">
+                        <h3><i class="fas fa-road"></i> 三重治理路径</h3>
+                        <div class="pathway-item">
+                            <h4>法律兜底</h4>
+                            <p>细化最高法《规定》中的量化标准，明确"彩礼数额过高""共同生活时间较短"的具体界定。</p>
+                        </div>
+                        <div class="pathway-item">
+                            <h4>源头预防</h4>
+                            <p>推广"婚前全过程辅导"模式，将彩礼协商纳入婚姻登记前置流程，同时搭建农村婚恋交友公益平台。</p>
+                        </div>
+                        <div class="pathway-item">
+                            <h4>社会共治</h4>
+                            <p>强化党员干部示范作用，通过村规民约、"文艺+宣讲"等形式引导"低彩礼、重感情"的婚俗新风。</p>
+                        </div>
+                    </div>
+
+                    <div class="final-message">
+                        <p>从"对簿公堂"到"握手言和"，从"天价彩礼"到"理性婚嫁"，彩礼纠纷的治理不仅是法律问题，更是社会文明的进阶之路。</p>
+                        <p class="highlight">当彩礼不再成为婚姻的门槛与家庭的负担，才能真正实现"重礼轻财"的婚俗新风尚，让婚姻始于爱情、归于幸福。</p>
+                    </div>
+
+                    <div class="ribbon-reconnect" id="ribbonReconnect">
+                        <i class="fas fa-heart"></i>
+                        <span>红绸重新连接，象征破镜重圆</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">彩礼纠纷图鉴</div>
+            <div class="footer-info">
+                <p>数据新闻项目 · 探索传统婚俗与现代法律的交汇点</p>
+                <p>数据来源：中国裁判文书网、最高人民法院、国家统计局、新华社报道等公开数据</p>
+                <p>制作时间：2024年 | 设计：新中式数据可视化风格</p>
+            </div>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-github"></i> 项目源码</a>
+                <a href="#"><i class="fas fa-download"></i> 数据下载</a>
+                <a href="#"><i class="fas fa-envelope"></i> 联系作者</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- 加载指示器 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner">
+            <div class="spinner-red"></div>
+            <div class="spinner-gold"></div>
+        </div>
+        <p>加载数据可视化图表...</p>
+    </div>
+
+    <!-- 自定义JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
