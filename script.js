@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('彩礼纠纷图鉴页面已加载完成');
 });
 
+// 在文件顶部添加移动端检测函数
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
 // 图表初始化
 function initializeCharts() {
     // 案件数量变化折线图
@@ -43,18 +48,23 @@ function initializeCharts() {
     populateDataTables();
 }
 
-// 案件数量变化折线图
+// 1. 案件数量变化折线图 - 添加移动端优化
 function initCaseTrendChart() {
     const chart = echarts.init(document.getElementById('caseTrendChart'));
+
+    // 移动端适配配置
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '2020-2025年彩礼纠纷案件数量变化',
             left: 'center',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
-            }
+            },
+            top: isMobileDevice ? '5%' : '3%'
         },
         tooltip: {
             trigger: 'axis',
@@ -65,9 +75,10 @@ function initCaseTrendChart() {
             }
         },
         grid: {
-            left: '5%',
-            right: '5%',
-            bottom: '10%',
+            left: isMobileDevice ? '8%' : '5%',
+            right: isMobileDevice ? '8%' : '5%',
+            bottom: isMobileDevice ? '15%' : '10%',
+            top: isMobileDevice ? '18%' : '15%',
             containLabel: true
         },
         xAxis: {
@@ -79,19 +90,25 @@ function initCaseTrendChart() {
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: isMobileDevice ? 10 : 12,
+                rotate: isMobileDevice ? 45 : 0
             }
         },
         yAxis: {
             type: 'value',
             name: '案件数量',
+            nameTextStyle: {
+                fontSize: isMobileDevice ? 11 : 12
+            },
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: isMobileDevice ? 10 : 11
             },
             splitLine: {
                 lineStyle: {
@@ -104,7 +121,7 @@ function initCaseTrendChart() {
             type: 'line',
             smooth: true,
             symbol: 'circle',
-            symbolSize: 8,
+            symbolSize: isMobileDevice ? 6 : 8,
             lineStyle: {
                 color: '#c41e3a',
                 width: 3
@@ -132,17 +149,19 @@ function initCaseTrendChart() {
     chart.setOption(option);
 }
 
-// 公众感知饼图
+// 2. 公众感知饼图 - 添加移动端优化
 function initExperiencePieChart() {
     const chart = echarts.init(document.getElementById('experiencePieChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '公众对彩礼纠纷的直接感知',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -151,34 +170,41 @@ function initExperiencePieChart() {
             formatter: '{a} <br/>{b}: {c}% ({d}%)'
         },
         legend: {
-            orient: 'vertical',
-            left: 'left',
-            top: 'center',
+            orient: isMobileDevice ? 'horizontal' : 'vertical',
+            left: isMobileDevice ? 'center' : 'left',
+            top: isMobileDevice ? '18%' : 'center',
+            bottom: isMobileDevice ? '10%' : 'auto',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 12
-            }
+                fontSize: isMobileDevice ? 11 : 12
+            },
+            itemWidth: 12,
+            itemHeight: 12,
+            itemGap: isMobileDevice ? 8 : 20
         },
         grid: {
             left: '5%',
             right: '5%',
             bottom: '5%',
-            top: '15%',
+            top: isMobileDevice ? '25%' : '15%',
             containLabel: true
         },
         series: [{
             name: '感知比例',
             type: 'pie',
-            radius: ['35%', '65%'],
-            center: ['65%', '55%'],
+            radius: isMobileDevice ? ['30%', '50%'] : ['35%', '65%'],
+            center: isMobileDevice ? ['50%', '45%'] : ['65%', '55%'],
             avoidLabelOverlap: false,
             label: {
-                show: false
+                show: false,
+                position: 'center',
+                fontSize: isMobileDevice ? 12 : 14,
+                formatter: '{b}: {c}%'
             },
             emphasis: {
                 label: {
                     show: true,
-                    fontSize: '12',
+                    fontSize: isMobileDevice ? 11 : '12',
                     fontWeight: 'bold'
                 }
             },
@@ -197,17 +223,19 @@ function initExperiencePieChart() {
     chart.setOption(option);
 }
 
-// 中国地图
+// 3. 中国地图 - 添加移动端优化
 function initChinaMapChart() {
     const chart = echarts.init(document.getElementById('chinaMapChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '各地区彩礼纠纷案件分布 (2020-2025年)',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -218,9 +246,9 @@ function initChinaMapChart() {
         visualMap: {
             min: 0,
             max: 7500,
-            left: 'left',
-            top: 'middle',
-            orient: 'vertical',
+            left: isMobileDevice ? '5%' : 'left',
+            top: isMobileDevice ? '10%' : 'middle',
+            orient: isMobileDevice ? 'horizontal' : 'vertical',
             text: ['高', '低'],
             calculable: true,
             inRange: {
@@ -228,18 +256,19 @@ function initChinaMapChart() {
             },
             textStyle: {
                 color: '#2c1810',
-                fontSize: 12
+                fontSize: isMobileDevice ? 10 : 12
             },
-            itemWidth: 15,
-            itemHeight: 100
+            itemWidth: isMobileDevice ? 100 : 15,
+            itemHeight: isMobileDevice ? 15 : 100
         },
         series: [{
             name: '彩礼纠纷案件',
             type: 'map',
             map: 'china',
             roam: false,
-            zoom: 1.2,
+            zoom: isMobileDevice ? 1 : 1.2,
             center: [105, 35],
+            top: isMobileDevice ? '15%' : '10%',
             data: [
                 { name: '河南', value: 7320 },
                 { name: '山东', value: 4850 },
@@ -300,16 +329,19 @@ function initChinaMapChart() {
     });
 }
 
-// 法庭情景条形图
+// 9. 场景条形图 - 添加移动端优化
 function initSceneBarChart() {
     const chart = echarts.init(document.getElementById('sceneBarChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '2025年彩礼纠纷法庭情景分类统计',
             left: 'center',
+            top: isMobileDevice ? '5%' : '3%',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -320,9 +352,10 @@ function initSceneBarChart() {
             }
         },
         grid: {
-            left: '5%',
-            right: '5%',
-            bottom: '10%',
+            left: isMobileDevice ? '15%' : '5%',
+            right: isMobileDevice ? '5%' : '5%',
+            bottom: isMobileDevice ? '15%' : '10%',
+            top: isMobileDevice ? '20%' : '15%',
             containLabel: true
         },
         xAxis: {
@@ -333,7 +366,8 @@ function initSceneBarChart() {
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: isMobileDevice ? 10 : 11
             },
             splitLine: {
                 lineStyle: {
@@ -350,7 +384,8 @@ function initSceneBarChart() {
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: isMobileDevice ? 10 : 11
             }
         },
         series: [{
@@ -367,24 +402,27 @@ function initSceneBarChart() {
                 show: true,
                 position: 'right',
                 color: '#2c1810',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                fontSize: isMobileDevice ? 10 : 11
             }
         }]
     };
     chart.setOption(option);
 }
 
-// 彩礼范围认知雷达图
+// 4. 雷达图 - 添加移动端优化
 function initPerceptionRadarChart() {
     const chart = echarts.init(document.getElementById('perceptionRadarChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '公众对彩礼范围的认知程度',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 14,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -393,7 +431,7 @@ function initPerceptionRadarChart() {
             left: '5%',
             right: '5%',
             bottom: '5%',
-            top: '15%',
+            top: isMobileDevice ? '20%' : '15%',
             containLabel: true
         },
         radar: {
@@ -407,8 +445,8 @@ function initPerceptionRadarChart() {
                 { name: '节日礼物', max: 100 },
                 { name: '日常消费', max: 100 }
             ],
-            center: ['50%', '60%'],
-            radius: '70%',
+            center: ['50%', isMobileDevice ? '55%' : '60%'],
+            radius: isMobileDevice ? '60%' : '70%',
             splitLine: {
                 lineStyle: {
                     color: 'rgba(140, 98, 57, 0.2)'
@@ -427,7 +465,7 @@ function initPerceptionRadarChart() {
             name: {
                 textStyle: {
                     color: '#2c1810',
-                    fontSize: 11
+                    fontSize: isMobileDevice ? 10 : 11
                 }
             }
         },
@@ -453,17 +491,19 @@ function initPerceptionRadarChart() {
     chart.setOption(option);
 }
 
-// 性别认知差异图
+// 5. 性别认知差异图 - 添加移动端优化
 function initGenderPerceptionChart() {
     const chart = echarts.init(document.getElementById('genderPerceptionChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '不同性别对彩礼金额的认知差异',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 14,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -475,17 +515,19 @@ function initGenderPerceptionChart() {
         },
         legend: {
             data: ['男性认知', '女性认知'],
-            top: 35,
+            top: isMobileDevice ? '15%' : '35',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 12
-            }
+                fontSize: isMobileDevice ? 11 : 12
+            },
+            itemWidth: isMobileDevice ? 12 : 16,
+            itemHeight: isMobileDevice ? 12 : 16
         },
         grid: {
-            left: '5%',
-            right: '5%',
-            bottom: '15%',
-            top: '20%',
+            left: isMobileDevice ? '12%' : '5%',
+            right: isMobileDevice ? '12%' : '5%',
+            bottom: isMobileDevice ? '20%' : '15%',
+            top: isMobileDevice ? '25%' : '20%',
             containLabel: true
         },
         xAxis: {
@@ -498,15 +540,15 @@ function initGenderPerceptionChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                rotate: 45,
-                fontSize: 11
+                rotate: isMobileDevice ? 45 : 45,
+                fontSize: isMobileDevice ? 10 : 11
             }
         },
         yAxis: {
             type: 'value',
             name: '认知比例 (%)',
             nameTextStyle: {
-                fontSize: 12
+                fontSize: isMobileDevice ? 11 : 12
             },
             axisLine: {
                 lineStyle: {
@@ -515,7 +557,7 @@ function initGenderPerceptionChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                fontSize: 11
+                fontSize: isMobileDevice ? 10 : 11
             },
             splitLine: {
                 lineStyle: {
@@ -526,6 +568,7 @@ function initGenderPerceptionChart() {
         series: [{
             name: '男性认知',
             type: 'bar',
+            barWidth: isMobileDevice ? '25%' : '40%',
             data: [15.2, 28.6, 32.1, 18.4, 4.3, 1.4],
             itemStyle: {
                 color: '#1890ff'
@@ -533,6 +576,7 @@ function initGenderPerceptionChart() {
         }, {
             name: '女性认知',
             type: 'bar',
+            barWidth: isMobileDevice ? '25%' : '40%',
             data: [8.7, 22.3, 35.8, 24.1, 7.2, 1.9],
             itemStyle: {
                 color: '#d4380d'
@@ -542,17 +586,19 @@ function initGenderPerceptionChart() {
     chart.setOption(option);
 }
 
-// 性别比例图
+// 6. 性别比例图 - 添加移动端优化
 function initGenderRatioChart() {
     const chart = echarts.init(document.getElementById('genderRatioChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '20-40岁适婚性别比变化趋势',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 14,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -561,17 +607,17 @@ function initGenderRatioChart() {
         },
         legend: {
             data: ['20-30岁', '30-40岁'],
-            top: 35,
+            top: isMobileDevice ? '15%' : '35',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 12
+                fontSize: isMobileDevice ? 11 : 12
             }
         },
         grid: {
-            left: '8%',
-            right: '5%',
-            bottom: '15%',
-            top: '25%',
+            left: isMobileDevice ? '12%' : '8%',
+            right: isMobileDevice ? '12%' : '5%',
+            bottom: isMobileDevice ? '20%' : '15%',
+            top: isMobileDevice ? '25%' : '25%',
             containLabel: true
         },
         xAxis: {
@@ -584,14 +630,14 @@ function initGenderRatioChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                fontSize: 11
+                fontSize: isMobileDevice ? 10 : 11
             }
         },
         yAxis: {
             type: 'value',
             name: '性别比 (女=100)',
             nameTextStyle: {
-                fontSize: 12
+                fontSize: isMobileDevice ? 11 : 12
             },
             axisLine: {
                 lineStyle: {
@@ -600,7 +646,7 @@ function initGenderRatioChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                fontSize: 11
+                fontSize: isMobileDevice ? 10 : 11
             },
             splitLine: {
                 lineStyle: {
@@ -643,17 +689,19 @@ function initGenderRatioChart() {
     chart.setOption(option);
 }
 
-// 彩礼金额对比图
+// 7. 彩礼金额对比图 - 添加移动端优化
 function initAmountComparisonChart() {
     const chart = echarts.init(document.getElementById('amountComparisonChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '婚俗改革前后彩礼金额对比',
             left: 'center',
-            top: 10,
+            top: isMobileDevice ? '3%' : '10',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 14,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -665,17 +713,19 @@ function initAmountComparisonChart() {
         },
         legend: {
             data: ['改革前', '改革后'],
-            top: 35,
+            top: isMobileDevice ? '15%' : '35',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 12
-            }
+                fontSize: isMobileDevice ? 11 : 12
+            },
+            itemWidth: isMobileDevice ? 12 : 16,
+            itemHeight: isMobileDevice ? 12 : 16
         },
         grid: {
-            left: '5%',
-            right: '5%',
-            bottom: '20%',
-            top: '20%',
+            left: isMobileDevice ? '12%' : '5%',
+            right: isMobileDevice ? '12%' : '5%',
+            bottom: isMobileDevice ? '25%' : '20%',
+            top: isMobileDevice ? '25%' : '20%',
             containLabel: true
         },
         xAxis: {
@@ -688,15 +738,15 @@ function initAmountComparisonChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                rotate: 45,
-                fontSize: 11
+                rotate: isMobileDevice ? 45 : 45,
+                fontSize: isMobileDevice ? 10 : 11
             }
         },
         yAxis: {
             type: 'value',
             name: '彩礼金额 (万元)',
             nameTextStyle: {
-                fontSize: 12
+                fontSize: isMobileDevice ? 11 : 12
             },
             axisLine: {
                 lineStyle: {
@@ -705,7 +755,7 @@ function initAmountComparisonChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                fontSize: 11
+                fontSize: isMobileDevice ? 10 : 11
             },
             splitLine: {
                 lineStyle: {
@@ -716,6 +766,7 @@ function initAmountComparisonChart() {
         series: [{
             name: '改革前',
             type: 'bar',
+            barWidth: isMobileDevice ? '25%' : '40%',
             data: [25.6, 18.9, 15.3, 12.8, 22.1, 16.7, 19.4],
             itemStyle: {
                 color: '#d4380d'
@@ -723,6 +774,7 @@ function initAmountComparisonChart() {
         }, {
             name: '改革后',
             type: 'bar',
+            barWidth: isMobileDevice ? '25%' : '40%',
             data: [8.6, 6.2, 5.8, 4.9, 7.3, 5.2, 6.8],
             itemStyle: {
                 color: '#52c41a'
@@ -732,16 +784,19 @@ function initAmountComparisonChart() {
     chart.setOption(option);
 }
 
-// 词云图
+// 8. 词云图 - 添加移动端优化
 function initWordCloudChart() {
     const chart = echarts.init(document.getElementById('wordCloudChart'));
+    const isMobileDevice = isMobile();
+
     const option = {
         title: {
             text: '公众对减少彩礼纠纷的期待',
             left: 'center',
+            top: isMobileDevice ? '5%' : '3%',
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: isMobileDevice ? 14 : 16,
                 fontWeight: '600'
             }
         },
@@ -755,10 +810,10 @@ function initWordCloudChart() {
             height: '80%',
             right: null,
             bottom: null,
-            sizeRange: [12, 60],
+            sizeRange: isMobileDevice ? [10, 40] : [12, 60],
             rotationRange: [-90, 90],
             rotationStep: 45,
-            gridSize: 8,
+            gridSize: isMobileDevice ? 6 : 8,
             drawOutOfBound: false,
             textStyle: {
                 fontFamily: 'Noto Sans SC',
