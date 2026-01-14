@@ -35,7 +35,7 @@
             <a href="#" class="nav-logo">彩礼纠纷图鉴</a>
             <div class="nav-menu">
                 <a href="#introduction">导语</a>
-                <a href="#data-iceberg">数据冰山</a>
+                <a href="#caseTrend">数据冰山</a>
                 <a href="#court-scenes">法庭情景</a>
                 <a href="#causes">纠纷成因</a>
                 <a href="#solutions">破局之路</a>
@@ -121,6 +121,10 @@
                     <div id="experiencePieChart" class="echart-chart"></div>
                 </div>
 
+                <div class="chart-container">
+                    <div id="resolutionMethodsChart" class="echart-chart"></div>
+                </div>
+
                 <div class="insight-box">
                     <h3><i class="fas fa-lightbulb"></i> 洞察</h3>
                     <p>这种"低感知、高裁判"的现象背后，反映着大量彩礼争议在进入司法程序前，已通过家庭协商、民间调解等非正式途径消化，而进入诉讼的案例往往具有金额较大、矛盾较深、协商无果等特点。司法案件因此成为观察彩礼矛盾尖锐程度的"冰山一角"。</p>
@@ -196,6 +200,14 @@
 
                     <div class="scene-card">
                         <div class="scene-card-header">
+                            <h3><i class="fas fa-question-circle"></i> 无关</h3>
+                            <span class="scene-count">209件</span>
+                        </div>
+                        <p>其他与彩礼争议无关的婚姻纠纷类型。</p>
+                    </div>
+
+                    <div class="scene-card">
+                        <div class="scene-card-header">
                             <h3><i class="fas fa-heart-broken"></i> 未登记/短婚闪离</h3>
                             <span class="scene-count">134件</span>
                         </div>
@@ -209,6 +221,22 @@
                         </div>
                         <p>核心围绕一方在婚姻关系中出现如家庭暴力、隐瞒重大疾病、赌博恶习、婚外情等过错行为，是否影响彩礼返还。</p>
                     </div>
+
+                    <div class="scene-card">
+                        <div class="scene-card-header">
+                            <h3><i class="fas fa-user-secret"></i> 婚托婚骗</h3>
+                            <span class="scene-count">16件</span>
+                        </div>
+                        <p>涉及婚托、婚骗等欺诈行为的婚姻纠纷案件。</p>
+                    </div>
+
+                    <div class="scene-card">
+                        <div class="scene-card-header">
+                            <h3><i class="fas fa-home"></i> 男方家庭困难</h3>
+                            <span class="scene-count">12件</span>
+                        </div>
+                        <p>因男方家庭经济困难而引发的彩礼争议纠纷。</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -217,7 +245,7 @@
         <section class="section data-section" id="perceptionCharts">
             <div class="section-container">
                 <h2 class="section-title">纠纷何以生成：法律模糊与认知差异</h2>
-                <p class="section-description">公众对"哪些财物属于彩礼"的认知存在显著分歧。80%的受访者明确将"男方直接给女方家庭的现金"列为彩礼核心形式，70%认可"三金/五金"的彩礼属性。</p>
+                <p class="section-description">公众对"哪些财物属于彩礼"的认知存在显著分歧。调查显示，男性和女性在彩礼范围认知上既有共识又有差异，反映了传统习俗与现代观念的碰撞。</p>
 
                 <div class="chart-container">
                     <div id="perceptionRadarChart" class="echart-chart"></div>
@@ -268,18 +296,22 @@
             <div class="section-container">
                 <h2 class="section-title">社会推力：观念冲突与结构压力</h2>
 
+                <div class="chart-container">
+                    <div id="generationalDifferencesChart" class="echart-chart"></div>
+                </div>
+
                 <div class="causes-grid">
                     <div class="cause-item">
                         <div class="cause-icon">
                             <i class="fas fa-venus-mars"></i>
                         </div>
                         <h3>婚姻挤压加剧竞争</h3>
-                        <p>据国家统计局2024年人口抽样调查显示，20-40岁适婚男女性别比显著高于平均性别比，其中20-30岁适婚男女性别比甚至超出110。这种"男多女少"的格局使彩礼成为男性竞争婚姻资源的重要筹码。</p>
+                        <p>据国家统计局2024年人口抽样调查显示，适婚年龄段男女性别比普遍高于平均水平，其中20-24岁年龄层性别比最高达113.98。这种"男多女少"的结构性压力使彩礼成为男性在婚姻市场竞争中的重要手段。</p>
                     </div>
 
                     <div class="cause-item">
                         <div class="cause-icon">
-                            <i class="fas fa-family"></i>
+                            <i class="fas fa-link"></i>
                         </div>
                         <h3>代际责任绑定彩礼</h3>
                         <p>农村地区"父代需为子代承担婚姻成本"的观念仍较普遍，问卷中56.5%的受访者认为彩礼金额应由"双方父母和子女共同商议"，这种责任绑定使彩礼超出家庭承受能力。</p>
@@ -296,6 +328,10 @@
 
                 <div class="chart-container">
                     <div id="genderRatioChart" class="echart-chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <div id="dowryDecisionChart" class="echart-chart"></div>
                 </div>
             </div>
         </section>
@@ -398,13 +434,7 @@
             <div class="footer-logo">彩礼纠纷图鉴</div>
             <div class="footer-info">
                 <p>数据新闻项目 · 探索传统婚俗与现代法律的交汇点</p>
-                <p>数据来源：中国裁判文书网、最高人民法院、国家统计局、新华社报道等公开数据</p>
-                <p>制作时间：2024年 | 设计：新中式数据可视化风格</p>
-            </div>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-github"></i> 项目源码</a>
-                <a href="#"><i class="fas fa-download"></i> 数据下载</a>
-                <a href="#"><i class="fas fa-envelope"></i> 联系作者</a>
+                <p>数据来源：中国裁判文书网、最高人民法院、国家统计局、新华社报道等公开数据，基于779份有效问卷的统计分析</p>
             </div>
         </div>
     </footer>
