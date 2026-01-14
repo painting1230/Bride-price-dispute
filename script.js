@@ -139,6 +139,7 @@ function initExperiencePieChart() {
         title: {
             text: '公众对彩礼纠纷的直接感知',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
                 fontSize: 16,
@@ -152,15 +153,24 @@ function initExperiencePieChart() {
         legend: {
             orient: 'vertical',
             left: 'left',
+            top: 'center',
             textStyle: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 12
             }
+        },
+        grid: {
+            left: '5%',
+            right: '5%',
+            bottom: '5%',
+            top: '15%',
+            containLabel: true
         },
         series: [{
             name: '感知比例',
             type: 'pie',
-            radius: ['40%', '70%'],
-            center: ['60%', '50%'],
+            radius: ['35%', '65%'],
+            center: ['65%', '55%'],
             avoidLabelOverlap: false,
             label: {
                 show: false
@@ -168,7 +178,7 @@ function initExperiencePieChart() {
             emphasis: {
                 label: {
                     show: true,
-                    fontSize: '14',
+                    fontSize: '12',
                     fontWeight: 'bold'
                 }
             },
@@ -194,6 +204,7 @@ function initChinaMapChart() {
         title: {
             text: '各地区彩礼纠纷案件分布 (2020-2025年)',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
                 fontSize: 16,
@@ -208,15 +219,19 @@ function initChinaMapChart() {
             min: 0,
             max: 7500,
             left: 'left',
-            top: 'bottom',
+            top: 'middle',
+            orient: 'vertical',
             text: ['高', '低'],
             calculable: true,
             inRange: {
                 color: ['#e6f7ff', '#bae7ff', '#40a9ff', '#1890ff']
             },
             textStyle: {
-                color: '#2c1810'
-            }
+                color: '#2c1810',
+                fontSize: 12
+            },
+            itemWidth: 15,
+            itemHeight: 100
         },
         series: [{
             name: '彩礼纠纷案件',
@@ -366,13 +381,21 @@ function initPerceptionRadarChart() {
         title: {
             text: '公众对彩礼范围的认知程度',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: '600'
             }
         },
         tooltip: {},
+        grid: {
+            left: '5%',
+            right: '5%',
+            bottom: '5%',
+            top: '15%',
+            containLabel: true
+        },
         radar: {
             indicator: [
                 { name: '男方直接给女方家庭现金', max: 100 },
@@ -384,6 +407,8 @@ function initPerceptionRadarChart() {
                 { name: '节日礼物', max: 100 },
                 { name: '日常消费', max: 100 }
             ],
+            center: ['50%', '60%'],
+            radius: '70%',
             splitLine: {
                 lineStyle: {
                     color: 'rgba(140, 98, 57, 0.2)'
@@ -397,6 +422,12 @@ function initPerceptionRadarChart() {
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
+                }
+            },
+            name: {
+                textStyle: {
+                    color: '#2c1810',
+                    fontSize: 11
                 }
             }
         },
@@ -429,9 +460,10 @@ function initGenderPerceptionChart() {
         title: {
             text: '不同性别对彩礼金额的认知差异',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: '600'
             }
         },
@@ -443,14 +475,17 @@ function initGenderPerceptionChart() {
         },
         legend: {
             data: ['男性认知', '女性认知'],
+            top: 35,
             textStyle: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 12
             }
         },
         grid: {
             left: '5%',
             right: '5%',
-            bottom: '10%',
+            bottom: '15%',
+            top: '20%',
             containLabel: true
         },
         xAxis: {
@@ -463,19 +498,24 @@ function initGenderPerceptionChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                rotate: 45
+                rotate: 45,
+                fontSize: 11
             }
         },
         yAxis: {
             type: 'value',
             name: '认知比例 (%)',
+            nameTextStyle: {
+                fontSize: 12
+            },
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 11
             },
             splitLine: {
                 lineStyle: {
@@ -509,9 +549,10 @@ function initGenderRatioChart() {
         title: {
             text: '20-40岁适婚性别比变化趋势',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: '600'
             }
         },
@@ -520,14 +561,17 @@ function initGenderRatioChart() {
         },
         legend: {
             data: ['20-30岁', '30-40岁'],
+            top: 35,
             textStyle: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 12
             }
         },
         grid: {
-            left: '5%',
+            left: '8%',
             right: '5%',
-            bottom: '10%',
+            bottom: '15%',
+            top: '25%',
             containLabel: true
         },
         xAxis: {
@@ -539,19 +583,24 @@ function initGenderRatioChart() {
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 11
             }
         },
         yAxis: {
             type: 'value',
             name: '性别比 (女=100)',
+            nameTextStyle: {
+                fontSize: 12
+            },
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 11
             },
             splitLine: {
                 lineStyle: {
@@ -601,9 +650,10 @@ function initAmountComparisonChart() {
         title: {
             text: '婚俗改革前后彩礼金额对比',
             left: 'center',
+            top: 10,
             textStyle: {
                 color: '#2c1810',
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: '600'
             }
         },
@@ -615,14 +665,17 @@ function initAmountComparisonChart() {
         },
         legend: {
             data: ['改革前', '改革后'],
+            top: 35,
             textStyle: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 12
             }
         },
         grid: {
             left: '5%',
             right: '5%',
-            bottom: '10%',
+            bottom: '20%',
+            top: '20%',
             containLabel: true
         },
         xAxis: {
@@ -635,19 +688,24 @@ function initAmountComparisonChart() {
             },
             axisLabel: {
                 color: '#2c1810',
-                rotate: 45
+                rotate: 45,
+                fontSize: 11
             }
         },
         yAxis: {
             type: 'value',
             name: '彩礼金额 (万元)',
+            nameTextStyle: {
+                fontSize: 12
+            },
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
                 }
             },
             axisLabel: {
-                color: '#2c1810'
+                color: '#2c1810',
+                fontSize: 11
             },
             splitLine: {
                 lineStyle: {
