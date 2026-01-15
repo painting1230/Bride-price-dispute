@@ -748,7 +748,7 @@ function initGenderRatioChart() {
         },
         xAxis: {
             type: 'category',
-            data: ['35-39岁', '30-34岁', '25-29岁', '20-24岁', '平均'],
+            data: ['35-39岁', '30-34岁', '25-29岁', '20-24岁', '我国总人口性别比'],
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
@@ -757,7 +757,15 @@ function initGenderRatioChart() {
             axisLabel: {
                 color: '#2c1810',
                 fontSize: isMobileDevice ? 10 : 11,
-                rotate: isMobileDevice ? 45 : 0
+                rotate: isMobileDevice ? 45 : 0,
+                interval: 0,
+                formatter: function(value) {
+                    // 截断过长的文本
+                    if (isMobileDevice && value.length > 8) {
+                        return value.substring(0, 8) + '...';
+                    }
+                    return value;
+                }
             }
         },
         yAxis: {
@@ -768,7 +776,7 @@ function initGenderRatioChart() {
             },
             min: 100,
             max: 120,
-            interval: 5,
+            interval: 2,
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
@@ -788,7 +796,7 @@ function initGenderRatioChart() {
             name: '性别比',
             type: 'bar',
             barWidth: isMobileDevice ? '50%' : '60%',
-            data: [105.44, 109.43, 112.74, 113.98, 110.40],
+            data: [105.44, 109.43, 112.74, 113.98, 104.0],
             itemStyle: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: '#c41e3a' },
@@ -806,14 +814,14 @@ function initGenderRatioChart() {
             },
             markLine: {
                 data: [{
-                    yAxis: 110.40,
+                    yAxis: 104.0,
                     lineStyle: {
                         color: '#d4af37',
                         type: 'dashed',
                         width: 2
                     },
                     label: {
-                        formatter: '平均值: 110.40',
+                        formatter: '',
                         position: 'end',
                         color: '#2c1810',
                         fontSize: isMobileDevice ? 10 : 12
