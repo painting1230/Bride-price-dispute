@@ -455,7 +455,7 @@ function initSceneBarChart() {
         },
         yAxis: {
             type: 'category',
-            data: ['男方家庭困难', '婚托婚骗', '过错争议', '未登记/短婚闪离', '无关', '彩礼范围争议'],
+            data: ['男方家庭困难', '婚托婚骗', '过错争议', '未登记/短婚闪离', '彩礼范围争议'],
             axisLine: {
                 lineStyle: {
                     color: '#8c6239'
@@ -469,12 +469,25 @@ function initSceneBarChart() {
         series: [{
             name: '案件数量',
             type: 'bar',
-            data: [12, 16, 48, 134, 209, 227],
+            data: [12, 16, 48, 134, 227],
             itemStyle: {
                 color: function(params) {
-                    const colors = ['#8c6239', '#d4af37', '#d4380d', '#c41e3a', '#40a9ff', '#1890ff'];
-                    return colors[params.dataIndex];
-                }
+                    // 使用黄色渐变，从深黄到浅黄
+                    const colors = ['#d4af37', '#d4af37', '#d4af37', '#d4af37', '#d4af37'];
+                    return {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 1,
+                        y2: 0,
+                        colorStops: [{
+                            offset: 0, color: colors[params.dataIndex] || '#d4af37'
+                        }, {
+                            offset: 1, color: '#f9e4c4'
+                        }]
+                    };
+                },
+                borderRadius: [0, 4, 4, 0]
             },
             label: {
                 show: true,

@@ -320,6 +320,7 @@ body {
     margin: 40px 0;
     box-shadow: 0 8px 32px var(--shadow);
     border: 1px solid rgba(196, 30, 58, 0.05);
+    position: relative;
 }
 
 .echart-chart {
@@ -329,13 +330,32 @@ body {
 }
 
 .data-note {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    text-align: left;
+}
+
+.centered-data-note .data-note {
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-top: 20px;
+}
+
+.centered-note {
+    text-align: center;
+    margin: 20px 0;
+    position: static;
 }
 
 .data-note p {
     color: var(--text-medium);
-    font-size: 14px;
+    font-size: 12px;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 洞察框 */
